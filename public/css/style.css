@@ -1,0 +1,62 @@
+body{
+  background-color: #283148;
+}
+
+.img{
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.clr{
+  color: white;
+}
+
+.btn {
+  background-color: #913535;
+  border-color: #913535;
+  color : white;
+  margin-top: 20px;
+  font-family: 'Bangers', cursive;
+  font-weight: lighter;
+}
+
+.btn:hover {
+  background-color:#913535;
+  border-color: white;
+  color : white;
+}
+
+.foot{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.hvr:hover {
+    color : white;
+}
+
+.padding{
+  padding-bottom: 40px;
+  padding-top: 50px;
+}
+
+.dark {
+    background-color: #bbbbbb
+}
+
+.color{
+  color: #283148;
+}
+
+.bg {
+    background-color: #bbbbbb;
+}
+
+.text{
+  font-family: 'Bangers', cursive;
+  font-weight: lighter;
+
+}
+.hidden {
+display: None;
+}

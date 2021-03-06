@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+
+    <title>Space NewsLetter Home</title>
+    <link rel="icon" href="images/favicon.ico">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+
+<body>
+
+<header>
+  <div class="navbar navbar-dark dark shadow-sm ">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center">
+        <img class="img" src="images/space-rocket.jpg" alt="" width="30" height="30">
+        <strong class="color text">Space Newsletter</strong>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="padding text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light clr text">Welcome!</h1>
+        <p class="lead clr text">Sign up to this newsletter for daily astronomy facts from NASA.</p>
+          <p>
+            <a href="signup.html" class="btn my-2 ">Sign me up!</a>
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"  role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/> <image href="images/image.jpg" height="100%" width="100%"/></svg>
+              <div class="card-body">
+                <p class="card-text text"> <%= title %> </p>
+                <p id="Item1Description" class="card-text hidden text"> <%= firstDesc %> </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                    <button id="item1" type="button" class="b btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"  role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/> <image href="images/image2.jpg" height="100%" width="100%"/></svg>
+              <div class="card-body">
+                <p class="card-text text"> <%= secTitle %> </p>
+                <p id="Item2Description" class="card-text hidden text"> <%= secondDesc %> </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" id="item2" class="b btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"  role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/> <image href="images/image3.jpg" height="100%" width="100%"/></svg>
+              <div class="card-body">
+                <p class="card-text text"> <%= thirdTitle %> </p>
+                <p id="Item3Description" class="card-text hidden text"> <%= thirdDesc %> </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" id="item3" class="b btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="text-muted foot ">
+  <div class="container ">
+    <p class="float-end mb-1">
+      <a class="clr hvr text" href="#">Back to top</a>
+    </p>
+  </div>
+</footer>
+
+<script src="javascript/index.js" charset="utf-8"></script>
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+</body>
+</html>

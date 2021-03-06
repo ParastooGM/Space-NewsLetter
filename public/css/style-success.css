@@ -1,0 +1,22 @@
+body{
+    background-color: #283148;
+}
+
+.jumbotron {
+  background-color: #bbbbbb;
+}
+
+.img{
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.dsiplay-4{
+  display: inline-block;
+}
+
+.text{
+  font-family: 'Bangers', cursive;
+  font-weight: lighter;
+}
