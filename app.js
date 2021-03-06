@@ -26,7 +26,7 @@ app.get("/", function(req, res){
   const day1 = Math.round(Math.random() * (28 - 1) + 1);
   const date1 = year1 + "-" + month1 + "-" + day1;
 
-  const url = "https://api.nasa.gov/planetary/apod?api_key=YXeXXhW1ODHZgXCt5u4kTm4kZubn6bFejnvn2oyn&date=" + date1;
+  const url = "https://api.nasa.gov/planetary/apod?api_key=YXeXXhW1ABSODHZgXCt5u4kTm4kZubn6bFejnvn2oyn&date=" + date1;
 
   https.get(url, function(response){
     response.on("data", function(data){
@@ -53,7 +53,7 @@ app.get("/", function(req, res){
   const day2 = Math.round(Math.random() * (28 - 1) + 1);
   const date2 = year2 + "-" + month2 + "-" + day2;
 
-  const url2 = "https://api.nasa.gov/planetary/apod?api_key=YXeXXhW1ODHZgXCt5u4kTm4kZubn6bFejnvn2oyn&date=" + date2;
+  const url2 = "https://api.nasa.gov/planetary/apod?api_key=YXQEReXXhW1ODHZgXCt5u4kTm4kZubn6bFejnvn2oyn&date=" + date2;
 
   https.get(url2, function(response){
     response.on("data", function(data){
@@ -81,7 +81,7 @@ app.get("/", function(req, res){
   const day = Math.round(Math.random() * (28 - 1) + 1);
   const date = year + "-" + month + "-" + day;
 
-  const url3 = "https://api.nasa.gov/planetary/apod?api_key=YXeXXhW1ODHZgXCt5u4kTm4kZubn6bFejnvn2oyn&date=" + date;
+  const url3 = "https://api.nasa.gov/planetary/apod?api_key=YXeXXhW1ODHZWEFgXCt5u4kTm4kZubn6bFejnvn2oyn&date=" + date;
 
   https.get(url3, function(response){
     response.on("data", function(data){
