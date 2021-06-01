@@ -112,7 +112,7 @@ app.get("/signup.html", function(req, res){
 });
 
 mailchimp.setConfig({
- apiKey: "e58796e6c530e4fbd3fdd986ad5fb748-us7",
+ apiKey: "a",
  server: "us7"
 });
 
