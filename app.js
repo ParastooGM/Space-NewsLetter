@@ -1,35 +1,35 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
 const https = require("https");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
-const download = require('image-downloader');
+const download = require("image-downloader");
 
 const app = express();
 
-app.set('view engine' , 'ejs');
+app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", function(req, res){
-
+app.get("/", function (req, res) {
   var name;
   var name2;
   var explanation1;
   var explanation2;
   var explanation3;
 
-  //*********************ITEM1************************
+  // ITEM 1
   const year1 = Math.round(Math.random() * (2020 - 2010) + 2010);
   const month1 = Math.round(Math.random() * (12 - 1) + 1);
   const day1 = Math.round(Math.random() * (28 - 1) + 1);
   const date1 = year1 + "-" + month1 + "-" + day1;
 
-  const url = "https://api.nasa.gov/planetary/apod?api_key=w&date=" + date1;
+  const nasa_url =
+    "https://api.nasa.gov/planetary/apod?api_key=" +
+    process.env.NASA_API_KEY +
+    "&date=";
 
-  https.get(url, function(response){
-    response.on("data", function(data){
+  https.get(nasa_url + date1, function (response) {
+    response.on("data", function (data) {
       const spaceData = JSON.parse(data);
       const imgURL = spaceData.hdurl;
       explanation1 = spaceData.explanation;
@@ -38,25 +38,21 @@ app.get("/", function(req, res){
 
       const options = {
         url: imgURL,
-        dest: dest
-      }
+        dest: dest,
+      };
 
-      download.image(options)
-        .catch((err) => console.error(err));
-    })
-  })
-  //**************************************************************
+      download.image(options).catch((err) => console.error(err));
+    });
+  });
 
-  //*********************ITEM2************************
+  // ITEM 2
   const year2 = Math.round(Math.random() * (2020 - 2015) + 2015);
   const month2 = Math.round(Math.random() * (12 - 1) + 1);
   const day2 = Math.round(Math.random() * (28 - 1) + 1);
   const date2 = year2 + "-" + month2 + "-" + day2;
 
-  const url2 = "https://api.nasa.gov/planetary/apod?api_key=w&date=" + date2;
-
-  https.get(url2, function(response){
-    response.on("data", function(data){
+  https.get(nasa_url + date2, function (response) {
+    response.on("data", function (data) {
       const spaceData2 = JSON.parse(data);
       const imgURL2 = spaceData2.hdurl;
       explanation2 = spaceData2.explanation;
@@ -65,26 +61,21 @@ app.get("/", function(req, res){
 
       const options = {
         url: imgURL2,
-        dest: dest2
-      }
+        dest: dest2,
+      };
 
-      download.image(options)
-        .catch((err) => console.error(err))
-    })
-  })
+      download.image(options).catch((err) => console.error(err));
+    });
+  });
 
-  //**************************************************************
-
-  //*********************ITEM3************************
+  // ITEM 3
   const year = Math.round(Math.random() * (2020 - 2015) + 2015);
   const month = Math.round(Math.random() * (12 - 1) + 1);
   const day = Math.round(Math.random() * (28 - 1) + 1);
-  const date = year + "-" + month + "-" + day;
+  const date3 = year + "-" + month + "-" + day;
 
-  const url3 = "https://api.nasa.gov/planetary/apod?api_key=Y&date=" + date;
-
-  https.get(url3, function(response){
-    response.on("data", function(data){
+  https.get(nasa_url + date3, function (response) {
+    response.on("data", function (data) {
       const spaceData3 = JSON.parse(data);
       const imgURL3 = spaceData3.hdurl;
       explanation3 = spaceData3.explanation;
@@ -93,56 +84,58 @@ app.get("/", function(req, res){
 
       const options = {
         url: imgURL3,
-        dest: dest3
-      }
+        dest: dest3,
+      };
 
-      download.image(options)
-        .catch((err) => console.error(err))
+      download.image(options).catch((err) => console.error(err));
 
-      res.render("home", {title : name , secTitle: name2 , thirdTitle: name3, firstDesc: explanation1, secondDesc: explanation2, thirdDesc: explanation3});
-
-    })
-  })
-  //**************************************************************
-
+      res.render("home", {
+        title: name,
+        secTitle: name2,
+        thirdTitle: name3,
+        firstDesc: explanation1,
+        secondDesc: explanation2,
+        thirdDesc: explanation3,
+      });
+    });
+  });
 });
 
-app.get("/signup.html", function(req, res){
-  res.sendFile( __dirname + "/signup.html");
+app.get("/signup.html", function (req, res) {
+  res.sendFile(__dirname + "/signup.html");
 });
 
 mailchimp.setConfig({
- apiKey: "a",
- server: "us7"
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_SERVER,
 });
 
-app.post("/signup.html", function(req, res){
+app.post("/signup.html", function (req, res) {
   const firstName = req.body.fName;
   const lastName = req.body.lName;
   const email = req.body.email;
-  const listId = "7833ad8b99";
+  const listId = process.env.LIST_ID;
 
   const subscribingUser = {
-   firstName: firstName,
-   lastName: lastName,
-   email: email
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
   };
 
   async function run() {
-   const response = await mailchimp.lists.addListMember(listId, {
-     email_address: subscribingUser.email,
-     status: "subscribed",
-     merge_fields: {
-     FNAME: subscribingUser.firstName,
-     LNAME: subscribingUser.lastName
-     }
+    const response = await mailchimp.lists.addListMember(listId, {
+      email_address: subscribingUser.email,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: subscribingUser.firstName,
+        LNAME: subscribingUser.lastName,
+      },
     });
 
-  res.sendFile(__dirname + "/success.html");
-};
+    res.sendFile(__dirname + "/success.html");
+  }
 
-  run().catch(e => res.sendFile(__dirname + "/failure.html"));
+  run().catch((e) => res.sendFile(__dirname + "/failure.html"));
 });
-
 
 app.listen(process.env.PORT || 3000);
