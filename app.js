@@ -5,6 +5,7 @@ const mailchimp = require("@mailchimp/mailchimp_marketing");
 const download = require("image-downloader");
 
 const app = express();
+require("dotenv").config();
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -18,7 +19,7 @@ app.get("/", function (req, res) {
   var explanation3;
 
   // ITEM 1
-  const year1 = Math.round(Math.random() * (2020 - 2010) + 2010);
+  const year1 = Math.round(Math.random() * (2023 - 2010) + 2010);
   const month1 = Math.round(Math.random() * (12 - 1) + 1);
   const day1 = Math.round(Math.random() * (28 - 1) + 1);
   const date1 = year1 + "-" + month1 + "-" + day1;
@@ -46,7 +47,7 @@ app.get("/", function (req, res) {
   });
 
   // ITEM 2
-  const year2 = Math.round(Math.random() * (2020 - 2015) + 2015);
+  const year2 = Math.round(Math.random() * (2023 - 2015) + 2015);
   const month2 = Math.round(Math.random() * (12 - 1) + 1);
   const day2 = Math.round(Math.random() * (28 - 1) + 1);
   const date2 = year2 + "-" + month2 + "-" + day2;
@@ -69,7 +70,7 @@ app.get("/", function (req, res) {
   });
 
   // ITEM 3
-  const year = Math.round(Math.random() * (2020 - 2015) + 2015);
+  const year = Math.round(Math.random() * (2023 - 2015) + 2015);
   const month = Math.round(Math.random() * (12 - 1) + 1);
   const day = Math.round(Math.random() * (28 - 1) + 1);
   const date3 = year + "-" + month + "-" + day;
@@ -138,4 +139,7 @@ app.post("/signup.html", function (req, res) {
   run().catch((e) => res.sendFile(__dirname + "/failure.html"));
 });
 
-app.listen(process.env.PORT || 3000);
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log("server started"));
+
+module.exports = app;

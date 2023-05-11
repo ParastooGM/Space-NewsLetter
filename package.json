@@ -4,7 +4,8 @@
   "description": "This is a newsletter for space news.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test": "mocha --exit"
   },
   "author": "Parastoo",
   "license": "ISC",
