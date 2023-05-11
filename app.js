@@ -18,20 +18,27 @@ app.get("/", function (req, res) {
   var explanation2;
   var explanation3;
 
+  const nasa_url =
+    "https://api.nasa.gov/planetary/apod?api_key=" +
+    process.env.NASA_API_KEY +
+    "&date=";
+
   // ITEM 1
   const year1 = Math.round(Math.random() * (2023 - 2010) + 2010);
   const month1 = Math.round(Math.random() * (12 - 1) + 1);
   const day1 = Math.round(Math.random() * (28 - 1) + 1);
   const date1 = year1 + "-" + month1 + "-" + day1;
 
-  const nasa_url =
-    "https://api.nasa.gov/planetary/apod?api_key=" +
-    process.env.NASA_API_KEY +
-    "&date=";
-
   https.get(nasa_url + date1, function (response) {
-    response.on("data", function (data) {
-      const spaceData = JSON.parse(data);
+    var chunks = [];
+
+    response.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    response.on("end", function () {
+      var body = Buffer.concat(chunks);
+      const spaceData = JSON.parse(body);
       const imgURL = spaceData.hdurl;
       explanation1 = spaceData.explanation;
       name = spaceData.title;
@@ -53,8 +60,15 @@ app.get("/", function (req, res) {
   const date2 = year2 + "-" + month2 + "-" + day2;
 
   https.get(nasa_url + date2, function (response) {
-    response.on("data", function (data) {
-      const spaceData2 = JSON.parse(data);
+    var chunks = [];
+
+    response.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    response.on("end", function () {
+      var body = Buffer.concat(chunks);
+      const spaceData2 = JSON.parse(body);
       const imgURL2 = spaceData2.hdurl;
       explanation2 = spaceData2.explanation;
       name2 = spaceData2.title;
@@ -76,8 +90,15 @@ app.get("/", function (req, res) {
   const date3 = year + "-" + month + "-" + day;
 
   https.get(nasa_url + date3, function (response) {
-    response.on("data", function (data) {
-      const spaceData3 = JSON.parse(data);
+    var chunks = [];
+
+    response.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    response.on("end", function () {
+      var body = Buffer.concat(chunks);
+      const spaceData3 = JSON.parse(body);
       const imgURL3 = spaceData3.hdurl;
       explanation3 = spaceData3.explanation;
       const name3 = spaceData3.title;
@@ -136,7 +157,10 @@ app.post("/signup.html", function (req, res) {
     res.sendFile(__dirname + "/success.html");
   }
 
-  run().catch((e) => res.sendFile(__dirname + "/failure.html"));
+  run().catch((e) => {
+    console.log(e);
+    res.sendFile(__dirname + "/failure.html");
+  });
 });
 
 const port = process.env.PORT || 3000;
