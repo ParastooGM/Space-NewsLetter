@@ -111,6 +111,16 @@ app.get("/", function (req, res) {
 
       download.image(options).catch((err) => console.error(err));
 
+      if (!explanation3) {
+        explanation3 = "There was no further explanation for this one!";
+      }
+      if (!explanation2) {
+        explanation2 = "There was no further explanation for this one!";
+      }
+      if (!explanation1) {
+        explanation1 = "There was no further explanation for this one!";
+      }
+
       res.render("home", {
         title: name,
         secTitle: name2,
